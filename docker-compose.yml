@@ -1,0 +1,46 @@
+version: "3"
+services:
+  api:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    volumes:
+      - .:/workspace
+      - sample_nestjs_api_volumes:/workspace/node_modules
+    ports:
+      - 3000:3000
+
+  postgres:
+    image: postgres:14.2-alpine
+    container_name: postgres
+    ports:
+      - 5432:5432
+    volumes:
+      - ./db/init.d:/docker-entrypoint-initdb.d
+      - ./db/pgdata:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_INITDB_ARGS: "--encoding=UTF-8"
+      POSTGRES_DB: postgres
+    hostname: postgres
+    restart: always
+    user: root
+
+  pgadmin:
+    image: dpage/pgadmin4
+    restart: always
+    ports:
+      - 81:80
+    environment:
+      PGADMIN_DEFAULT_EMAIL: nestjs@example.com
+      PGADMIN_DEFAULT_PASSWORD: password
+    volumes:
+      - ./db/pgadmin:/var/lib/pgadmin
+    depends_on:
+      - postgres
+    user: root
+
+
+volumes:
+  sample_nestjs_api_volumes:

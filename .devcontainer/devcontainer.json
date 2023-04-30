@@ -1,0 +1,24 @@
+{
+  "name": "sample_nestjs_api",
+  "dockerComposeFile": [
+      "../docker-compose.yml",
+      "./docker-compose.override.yml",
+  ],
+  "service": "api",
+  "workspaceFolder": "/workspace",
+  "onCreateCommand": "bash ./.devcontainer/onCreateCommand.sh",
+  "forwardPorts": [3000],
+  "extensions": [
+    "dbaeumer.vscode-eslint",
+    "stylelint.vscode-stylelint",
+    "esbenp.prettier-vscode",
+    "christian-kohler.path-intellisense",
+    "oderwat.indent-rainbow",
+    "formulahendry.auto-rename-tag",
+    "vscode-icons-team.vscode-icons",
+    "MariusAlchimavicius.json-to-ts",
+    "ritwickdey.LiveServer",
+    "VisualStudioExptTeam.vscodeintellicode",
+    "eamodio.gitlens",
+  ]
+}

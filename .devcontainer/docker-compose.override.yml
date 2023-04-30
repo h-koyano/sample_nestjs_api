@@ -1,0 +1,6 @@
+services:
+  api:
+    # volumes:
+      # - .:/workspace
+      # - ${LOCAL_WORKSPACE_FOLDER}:/workspace
+    command: /bin/sh -c "while sleep 1000; do :; done"
